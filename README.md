@@ -4,19 +4,39 @@
 ![Google BigQuery](https://img.shields.io/badge/Google_Cloud-BigQuery-orange)
 ![Status](https://img.shields.io/badge/Status-Active-success)
 
-## 📋 Project Overview
-**FSB Pizza Data Pipeline** is a robust Data Engineering project designed to consolidate sales and operational data from a pizza restaurant chain.
+## 📖 Project Background
+**FSB Pizza (From Scratch Bakery Pizza)** is a restaurant specializing in direct sales (dine-in and take-away). Throughout its operations, FSB Pizza has collected sales transaction data; however, the utilization of this data remains limited and not optimally integrated to support data-driven decision-making.
 
-This project simulates a real-world scenario where data is ingested from REST APIs, cleaned and transformed using **Python (Pandas)**, and loaded into a **Google BigQuery** Data Warehouse. The pipeline is built with a **modular architecture** to ensure scalability, maintainability, and ease of testing.
+**The Objective:**
+As a Data Engineer, the goal is to build a structured **Data Warehouse** to consolidate transaction and operational data into a single centralized source. This data will subsequently be processed and presented through visualizations and interactive dashboards to help management:
+* Monitor sales performance.
+* Identify trends.
+* Discover opportunities to increase efficiency and revenue.
 
-**Key Features:**
-* **Modular ETL Design:** Separation of concerns (Extract, Transform, Load) for better code management.
-* **Incremental Loading:** Logic to handle daily data ingestion via date parameters.
-* **Cloud-Native:** Fully integrated with Google Cloud Platform (BigQuery).
-* **Secure:** Uses Service Account authentication (not hardcoded credentials).
+By implementing the right data architecture, FSB Pizza aims to transform into a more effective, efficient, and **data-driven** operation.
+
+## 🗂️ Data Sources & ERD
+The raw data is sourced from a REST API provided by the FSB Pizza backend team. The data ecosystem consists of **5 main tables** that form the Entity Relationship Diagram (ERD):
+
+### API Endpoints
+Base URL: `https://fsbproject.vercel.app/`
+
+| Table Name | Endpoint Description | API URL |
+| :--- | :--- | :--- |
+| **Customer** | Registered customer data | `/customer` |
+| **Pizza** | Pizza menu items & prices | `/pizza` |
+| **Pizza Type** | Categories of pizza | `/pizza_type` |
+| **Order** | Header transaction data | `/order` |
+| **Order Detail**| Itemized transaction details | `/order_detail` |
+
+### Metadata Schema
+Each table contains the following metadata columns for audit purposes:
+* `created_date`: Timestamp when the record was created.
+* `updated_date`: Timestamp when the record was last modified.
+
+![ERD Schema](docs/erd_diagram.png)
 
 ## 🏗️ Architecture & Project Structure
-
 The project follows a production-ready directory structure:
 
 fsb-data-pipeline/
@@ -50,10 +70,6 @@ fsb-data-pipeline/
 
 ## 🛠️ Installation & Setup
 * Clone the Repository
-
-Bash
-git clone [https://github.com/username-mas-fajar/fsb-data-pipeline.git](https://github.com/username-mas-fajar/fsb-data-pipeline.git)
-cd fsb-data-pipeline
 
 * Install Dependencies
 It is recommended to use a virtual environment.
@@ -92,7 +108,7 @@ Arguments:
 ## 📊 Dashboard
 ![Dashboard Preview](docs/dashboard_v1.png)
 
-https://lookerstudio.google.com/reporting/f9424be0-a07f-4aef-b90a-16bf235ab472
+[https://lookerstudio.google.com/reporting/f9424be0-a07f-4aef-b90a-16bf235ab472](https://lookerstudio.google.com/reporting/f9424be0-a07f-4aef-b90a-16bf235ab472)
 The final data is visualized in Looker Studio to track Sales Performance and Customer Trends.
 
 ## 👤 Author
